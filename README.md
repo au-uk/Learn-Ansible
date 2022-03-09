@@ -38,3 +38,18 @@ Finally, we can test ansible password-less connectivity to each host using the f
 ansible all -m ping
 ```
 ## Step 2 (Write and Run a playbook)
+Now that we have ansible installed, configured and tested, we will need to create a playbook.
+
+Here is a working playbook, that does nothing more than connect to each device.
+
+cat Ansible_Playbook_Template.yml
+```
+---
+- hosts: all
+  tasks:
+```
+We can run this playbook (or any other) with the following command:
+```
+ansible-playbook Ansible_Playbook_Template.yml
+```
+## Step 4 (Doing Useful Stuff)
