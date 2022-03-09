@@ -19,7 +19,7 @@ e.g:
 ```
 ansible -i inventory -m ping
 ```
-We can create a dynamic inventory via our cloud provider cli (i.e. aws ec2 describe-instances --query "Reservations[*].Instances[*].{Address:PublicIpAddress}") or manually with a list of host-names or IP addresses.
+We can create a dynamic inventory via a cloud provider cli (i.e. aws ec2 describe-instances --query "Reservations[*].Instances[*].{Address:PublicIpAddress}") or manually with a list of host-names or IP addresses.
 
 Next, we need to set-up password less SSH access to out inventory of hosts, using our public key file. We can create Private and Public Key using the following command locally.
 ```
@@ -52,4 +52,6 @@ We can run this playbook (or any other) with the following command:
 ```
 ansible-playbook Ansible_Playbook_Template.yml
 ```
-## Step 4 (Doing Useful Stuff)
+ Note: even though we have defined no tasks within your playbook. At the beginning of each play, Ansible executes by default an additional task that gathers information, referred to as facts, about the remote nodes. Because facts can be used on playbooks to better customize the behaviour of tasks, the fact-gathering task must happen before any other tasks are executed.
+
+## Step 4 (Doing Useful Stuff In Playbooks)
