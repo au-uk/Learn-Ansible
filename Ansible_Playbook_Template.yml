@@ -1,6 +1,6 @@
 ---
-- hosts: all
-  tasks:
-    - name: Task 1 #
-      debug: #
-        msg: Task 1 Is Runnning.
+- hosts: all # The hosts directive that defines the targets for that play.
+  tasks: # A task is the smallest unit of action you can automate using an Ansible playbook.
+    - name: Task 1 # The name property defines the output that will be printed when that task is about to be executed.
+      debug: # (The debug module) Modules offer shortcuts to execute operations that you would otherwise have to run as raw bash commands.
+        msg: Task 1 Is Runnning. # Modules set of options and properties.
