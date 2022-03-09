@@ -55,3 +55,20 @@ ansible-playbook Ansible_Playbook_Template.yml
  Note: even though we have defined no tasks within your playbook. At the beginning of each play, Ansible executes by default an additional task that gathers information, referred to as facts, about the remote nodes. Because facts can be used on playbooks to better customize the behaviour of tasks, the fact-gathering task must happen before any other tasks are executed.
 
 ## Step 4 (Doing Useful Stuff In Playbooks)
+
+A task is the smallest unit of action you can automate using an Ansible playbook. Playbooks typically contain a series of tasks that serve a goal. Ansible executes tasks in the same order they are defined inside a playbook. Modules offer shortcuts to execute operations that you would otherwise have to run as raw commands.
+
+Ansible supports the use of variables to customise the execution of tasks. Variables can come from different sources, such as the playbook file or external files.
+
+---
+---
+- hosts: all # The hosts directive that defines the targets for that play.
+  vars: # The vars section of the playbook defines a list of variables that will be injected in the scope of that play.
+    - var1: variable #
+    - var2: /also/a/variable #
+  tasks: # A task is the smallest unit of action you can automate using an Ansible playbook.
+    - name: Task 1 - print variables # The name property defines the output that will be printed when that task is about to be executed.
+      debug: # (The debug module) Modules offer shortcuts to execute operations that you would otherwise have to run as raw bash commands.
+        msg: "I am a {{ var1 }}, I am {{ var2 }}" # Modules set of options and properties.
+
+```
