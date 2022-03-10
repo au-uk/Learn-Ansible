@@ -1,4 +1,4 @@
-# Learn Ansible
+# Ansible Aide-mémoire
 I'm learning Ansible and taking notes to help me (and perhaps you) remember what "seemed important at the time, but is now sadly forgotten".
 
 ## Step 1 (Installation & Configuration)
@@ -85,7 +85,8 @@ We can add facts as varables in our playbook (which is cool!)
     - var2: /also/a/variable
     - var3: "{{ ansible_hostname }}" # Fact Cache Variable
   tasks: #
-    - name: Task 1 - print variables 
+    - name: Task 1 - print variables
       debug:  commands.
         msg: "I am a {{ var1 }}, I am {{ var2 }} on {{ var3 }}"
 ```
+We define conditions that will be evaluated before a task is executed. When a condition is not met, the task is then skipped. This is done with the when keyword, which accepts expressions that are typically based on a variable or a fact.
