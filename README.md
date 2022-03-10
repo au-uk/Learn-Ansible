@@ -61,18 +61,31 @@ A task is the smallest unit of action you can automate using an Ansible playbook
 Ansible supports the use of variables to customise the execution of tasks. Variables can come from different sources, such as the playbook file or external files.
 
 ```
-- hosts: all # The hosts directive that defines the targets for that play.
-  vars: # The vars section of the playbook defines a list of variables that will be injected in the scope of that play.
-    - var1: variable #
-    - var2: /also/a/variable #
-  tasks: # A task is the smallest unit of action you can automate using an Ansible playbook.
-    - name: Task 1 - print variables # The name property defines the output that will be printed when that task is about to be executed.
-      debug: # (The debug module) Modules offer shortcuts to execute operations that you would otherwise have to run as raw bash commands.
-        msg: "I am a {{ var1 }}, I am {{ var2 }}" # Modules set of options and properties.
+- hosts: all
+  vars:
+    - var1:
+    - var2:
+  tasks:
+    - name: Task 1 - print variables
+      debug:
+        msg: "I am a {{ var1 }}, I am {{ var2 }}"
 ```
 By default, before executing a playbook, Ansible will gather information about the systems to be automated. This information, is referred to as facts. Facts contain details such as network interfaces and addresses, the operating system running on remote nodes, and available memory, etc. Ansible stores facts in JSON format, with items grouped in nodes.
 
 To check what kind of information is available for the systems you’re provisioning, you can run the setup module with an ad hoc command:
 ```
 ansible all -m setup
+```
+We can add facts as varables in our playbook (which is cool!)
+```
+---
+- hosts: all
+  vars:
+    - var1: variable
+    - var2: /also/a/variable
+    - var3: "{{ ansible_hostname }}" # Fact Cache Variable
+  tasks: #
+    - name: Task 1 - print variables 
+      debug:  commands.
+        msg: "I am a {{ var1 }}, I am {{ var2 }} on {{ var3 }}"
 ```
